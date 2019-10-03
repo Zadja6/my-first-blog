@@ -1,11 +1,14 @@
-<div>
-    <h1><a href="/">Django Girls Blog</a></h1>
-</div>
+{% extends "blog/base.html" %}
+{% block content %}
 
-{% for poruka in poruke %}
-    <div>
-        <p>published: {{ poruka.published_date }}</p>
-        <h2><a href="">{{ poruka.tite }}</a></h2>
-        <p>{{ poruka.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
+{% for post in posts %}
+                <div class="post">
+                    <div class="date">
+                        <p>published: {{ post.published_date }}</p>
+                    </div>
+                    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.tite }}</a></h2>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+            {% endfor %}
+
+{% endblock %}
